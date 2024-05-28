@@ -14,6 +14,9 @@ import axios from "axios";
 import { Fira_Code } from "next/font/google";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:5000");
 
 import {
   Dialog,
@@ -96,6 +99,11 @@ export default function DeploymentsPage() {
       router.push("/");
     }
   };
+
+  socket.on("deploymentStatus", (deployment) => {
+    console.log("Deployment status updated:", deployment);
+    setDeployment(deployment);
+  });
 
   useEffect(() => {
     // if (user) {

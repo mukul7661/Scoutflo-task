@@ -3,12 +3,12 @@ const { aggregateLogs } = require("./utils/logAggregator");
 const Log = require("./models/Log");
 const { updateDeploymentHealth } = require("./utils/healthCheck");
 
-const healthCheckCron = cron.schedule("*/10 * * * * *", async () => {
+const healthCheckCron = cron.schedule("*/1 * * * * *", async () => {
   console.log("Running scheduled health check...");
   await updateDeploymentHealth();
 });
 
-const logAggregatorCron = cron.schedule("*/10 * * * * *", async () => {
+const logAggregatorCron = cron.schedule("*/1 * * * * *", async () => {
   console.log("Starting log aggregation...");
   await aggregateLogs();
   console.log("Log aggregation completed.");

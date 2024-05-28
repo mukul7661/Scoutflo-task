@@ -1,4 +1,3 @@
-// redux/slices/deploymentSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -77,26 +76,27 @@ export const deleteDeployment = createAsyncThunk(
   }
 );
 
-// export const updateDeployment = createSlice({
-//   name: "deployments",
-//   initialState,
-//   reducers: {
-//     updateDeployment: (state, action: PayloadAction<Deployment>) => {
-//       const index = state.deployments.findIndex(
-//         (deployment) => deployment.id === action.payload.id
-//       );
-//       if (index !== -1) {
-//         state.deployments[index] = action.payload;
-//       }
-//     },
-//   },
-// });
+export const updateDeployment = createSlice({
+  name: "deployments",
+  initialState,
+  reducers: {
+    updateDeployment: (state, action: PayloadAction<Deployment>) => {
+      const index = state.deployments.findIndex(
+        (deployment) => deployment.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.deployments[index] = action.payload;
+      }
+    },
+  },
+});
 
 const deploymentSlice = createSlice({
   name: "deployments",
   initialState,
   reducers: {
     updateDeployment: (state, action: PayloadAction<Deployment>) => {
+      console.log("Updating deployment:", action.payload);
       const index = state.deployments.findIndex(
         (deployment) => deployment.id === action.payload.id
       );
@@ -129,6 +129,6 @@ const deploymentSlice = createSlice({
   },
 });
 
-export const { updateDeployment } = deploymentSlice.actions;
+// export const { updateDeployment } = deploymentSlice.actions;
 
 export default deploymentSlice.reducer;

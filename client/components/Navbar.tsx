@@ -22,7 +22,9 @@ export function MainNav({
   const user = useSelector((state: RootState) => state.auth.isUserLoggedIn);
 
   if (!user) {
-    router.push("/login");
+    router.push(path);
+  } else if (path === "/login" || path === "/signup") {
+    router.push("/");
   }
 
   const dispatch = useDispatch();
